@@ -3,18 +3,17 @@ data:
   SEM_folder: train_SEM640
   test_LOM_folder: test_LOM640
   test_SEM_folder: test_SEM640
-  split: None
+  split: all_2.txt
 
 train:
   input_size: [256, 256]
   batch_size: 32
-  epochs: 10000
+  epochs: 100000
   gen_lr: 2.e-4
   disc_lr: 2.e-4
   max_steps: 9000
   lr_decay_start: 3000
   lr_decay_factor: 0.01
-  dropout: 00.1
   augmentations:
     - [RandomHorizontalFlip, {p: 0.5}]
     - [RandomVerticalFlip, {p: 0.5}]

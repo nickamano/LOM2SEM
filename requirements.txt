@@ -1,0 +1,10 @@
+numpy 
+Pillow 
+PyYAML 
+tensorboard
+pytorch
+matplotlib
+pytz
+torchvision
+Werkzeug 
+yacs=0.1.8
