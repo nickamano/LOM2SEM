@@ -6,7 +6,7 @@ This repository contains the code for generating SEM images from LOM images for 
 Pix2Pix is a conditional image generation model based on GAN. 
 To train a Pix2PixGAN model, run the following command:
 ```bash
-python -m Pix2Pix.train_p2phd --config Pix2Pix/configs/p2phd_aug.json
+python -m Pix2Pix.train_p2phd --config Pix2Pix/configs/p2phd_aug.yaml
 ```
 
 ## Palette
