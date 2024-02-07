@@ -20,9 +20,9 @@ def weights_init(m):
 
 def run(cfg):
     writer = config_writer(cfg)
-    train_set = P2PHDDataset("./data/mecs_steel", cfg.train.input_size,
+    train_set = P2PHDDataset(cfg.data.directory, cfg.train.input_size,
                              cfg.data.LOM_folder, cfg.data.SEM_folder, cfg.data.split, cfg.train.augmentations)
-    test_set = ImagePairDataset("./data/mecs_steel", cfg.train.input_size,
+    test_set = ImagePairDataset(cfg.data.directory, cfg.train.input_size,
                                 cfg.data.test_LOM_folder, cfg.data.test_SEM_folder, split=None)
     print(f'train set size: {len(train_set)}, test set size: {len(test_set)}')
     train_loader = DataLoader(train_set, batch_size=cfg.train.batch_size, shuffle=True, num_workers=cfg.train.num_workers)

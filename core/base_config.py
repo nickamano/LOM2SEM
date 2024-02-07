@@ -11,6 +11,7 @@ cfg.seed = 42
 
 # Dataset options
 cfg.data = CN()
+cfg.data.directory = "./data/mecs_steel"
 cfg.data.LOM_folder = 'LOM640'
 cfg.data.SEM_folder = 'SEM640'
 cfg.data.split = 'all.txt'
@@ -35,6 +36,7 @@ cfg.train.num_workers = 4
 
 # Logging options
 cfg.log = CN()
+cfg.log.directory = None
 cfg.log.name = None
 cfg.log.display_freq = 500
 cfg.log.log_freq = 50

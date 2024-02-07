@@ -5,8 +5,12 @@ import datetime
 from torch.utils.tensorboard import SummaryWriter
 import pytz
 
-def config_writer(cfg, OUT_DIR="results/"):
+def config_writer(cfg):
     # generate logfile name
+    if cfg.log.directory is None:
+        OUT_DIR = "results/"
+    else:
+        OUT_DIR = cfg.log.directory
     os.makedirs(OUT_DIR, exist_ok=True)
     if cfg.log.name is None:
         timezone = pytz.timezone('US/Pacific')

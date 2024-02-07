@@ -1,4 +1,5 @@
 data:
+  directory: ./data/mecs_steel
   LOM_folder: train_LOM640
   SEM_folder: train_SEM640
   test_LOM_folder: test_LOM640
@@ -21,6 +22,7 @@ train:
     - [MyRotateTransform, {}]
 
 log:
+  directory: ./results
   display_freq: 500
   n_row_imgs: 4 # number of images per row
   log_freq: 50
