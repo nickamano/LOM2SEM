@@ -12,3 +12,5 @@ __pycache__/
 
 data/mecs_steel/*/*.txt
 results/
+
+venv/
