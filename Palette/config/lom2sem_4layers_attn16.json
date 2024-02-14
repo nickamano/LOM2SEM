@@ -5,7 +5,7 @@
     "finetune_norm": false, // find the parameters to optimize
 
     "path": { //set every part file path
-        "base_dir": "Palette/experiments", // base path for all log except resume_state
+        "base_dir": "results/Palette/", // base path for all log except resume_state
         "code": "code", // code backup
         "tb_logger": "tb_logger", // path of tensorboard logger
         "results": "results",
@@ -21,7 +21,7 @@
                 "args":{ // arguments to initialize dataset
                     "LOM_data_root": "data/mecs_steel/train_LOM640",
                     "SEM_data_root": "data/mecs_steel/train_SEM640",
-                    "data_flist": null,
+                    "data_flist": "data/mecs_steel/train_LOM640",
                     "data_len": -1
                 } 
             },
@@ -49,7 +49,7 @@
                 "args":{
                     "LOM_data_root": "data/mecs_steel/test_LOM640",
                     "SEM_data_root": "data/mecs_steel/test_SEM640",
-                    "data_flist": null
+                    "data_flist": "data/mecs_steel/test_LOM640"
                 }
             },
             "dataloader":{
