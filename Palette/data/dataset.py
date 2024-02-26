@@ -24,8 +24,8 @@ def make_dataset(dir):
         for root, _, fnames in sorted(os.walk(dir)):
             for fname in sorted(fnames):
                 if is_image_file(fname):
-                    path = os.path.join(root, fname)
-                    images.append(path)
+                    # path = os.path.join(root, fname)
+                    images.append(fname)
 
     return images
 
@@ -174,7 +174,7 @@ class ColorizationDataset(data.Dataset):
         return len(self.flist)
 
 class LOM2SEMDataset(data.Dataset):
-    def __init__(self, LOM_data_root, SEM_data_root, data_flist, data_len=-1, image_size=[224, 224], loader=pil_loader):
+    def __init__(self, LOM_data_root, SEM_data_root, data_flist, data_len=-1, image_size=[256, 256], loader=pil_loader):
         self.LOM_data_root = LOM_data_root
         self.SEM_data_root = SEM_data_root
         flist = make_dataset(data_flist)
@@ -192,7 +192,7 @@ class LOM2SEMDataset(data.Dataset):
 
     def __getitem__(self, index):
         ret = {}
-        file_name = str(self.flist[index]).zfill(5) + '.tif'
+        file_name = str(self.flist[index]).zfill(5)
 
         img = self.tfs(self.loader('{}/{}'.format(self.SEM_data_root, file_name)))
         cond_image = self.tfs(self.loader('{}/{}'.format(self.LOM_data_root, file_name)))

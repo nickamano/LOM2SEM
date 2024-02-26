@@ -11,6 +11,5 @@ torch>=1.6
 torchvision
 matplotlib
 pytz
-
 Werkzeug 
 yacs=0.1.8
