@@ -8,22 +8,22 @@ data:
 
 train:
   input_size: [256, 256]
-  batch_size: 32
-  epochs: 1000
+  batch_size: 16
+  epochs: 2000
   gen_lr: 2.e-4
   disc_lr: 2.e-4
-  max_steps: 900
+  max_steps: 1200
   lr_decay_start: 300
   lr_decay_factor: 0.01
-  dropout: 0.01
+  dropout: 0.001
   augmentations:
     - [RandomHorizontalFlip, {p: 0.5}]
     - [RandomVerticalFlip, {p: 0.5}]
     - [MyRotateTransform, {}]
 
 log:
-  directory: /scratch/eaholm_root/eaholm0/namano/LOM2SEM/results
-  display_freq: 500
+  directory: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Pix2Pix/
+  display_freq: 300
   n_row_imgs: 4 # number of images per row
   log_freq: 50
 

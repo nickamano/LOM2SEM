@@ -1,6 +1,8 @@
 import argparse
 import os
 import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 import torch
 import torch.multiprocessing as mp
 

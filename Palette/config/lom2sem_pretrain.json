@@ -1,6 +1,6 @@
 {
     "name": "lom2sem_4layers_attn16", // experiments name
-    "gpu_ids": [0], // gpu ids list, default is single 0
+    "gpu_ids": [0,1], // gpu ids list, default is single 0
     "seed" : -1, // random seed, seed <0 represents randomization not used 
     "finetune_norm": false, // find the parameters to optimize
 
@@ -11,7 +11,7 @@
         "results": "results",
         "checkpoint": "checkpoint",
         // "resume_state": "experiments/inpainting_places2_220413_143231/checkpoint/25" 
-        "resume_state": "/scratch/eaholm_root/eaholm0/namano/LOM2SEM/results/Palette/pretrained_places2/checkpoint/16_Network.pth"
+        "resume_state": "/scratch/eaholm_root/eaholm0/namano/LOM2SEM/results/Palette/pretrained_places2/checkpoint/16"
     },
 
     "datasets": { // train or test
@@ -35,7 +35,7 @@
                     "drop_last": true
                 },
                 "val_args":{ // arguments to initialize valid_dataloader, will overwrite the parameters in train_dataloader
-                    "batch_size": 4, // batch size in each gpu
+                    "batch_size": 8, // batch size in each gpu
                     "num_workers": 4,
                     "shuffle": false,
                     "pin_memory": true,
@@ -131,9 +131,9 @@
     },
 
     "train": { // arguments for basic training
-        "n_epoch": 5000, // max epochs, not limited now
+        "n_epoch": 4000, // max epochs, not limited now
         "n_iter": 1e8, // max interations
-        "val_epoch": 200, // valdation every specified number of epochs
+        "val_epoch": 400, // valdation every specified number of epochs
         "save_checkpoint_epoch": 200,
         "log_iter": 1e4, // log every specified number of iterations
         "tensorboard" : true // tensorboardX enable

@@ -1,6 +1,6 @@
 {
     "name": "lom2sem_4layers_attn16", // experiments name
-    "gpu_ids": [0], // gpu ids list, default is single 0
+    "gpu_ids": [0,1], // gpu ids list, default is single 0
     "seed" : -1, // random seed, seed <0 represents randomization not used 
     "finetune_norm": false, // find the parameters to optimize
 
@@ -11,7 +11,7 @@
         "results": "results",
         "checkpoint": "checkpoint",
         // "resume_state": "experiments/inpainting_places2_220413_143231/checkpoint/25" 
-        "resume_state": "/scratch/eaholm_root/eaholm0/namano/LOM2SEM/results/Palette/pretrained_places2/checkpoint/16_Network.pth"
+        "resume_state": "/scratch/eaholm_root/eaholm0/namano/LOM2SEM/results/Palette/train_lom2sem_4layers_attn16_240220_173837/checkpoint/1400"
     },
 
     "datasets": { // train or test
@@ -54,7 +54,7 @@
             },
             "dataloader":{
                 "args":{
-                    "batch_size": 8,
+                    "batch_size": 4,
                     "num_workers": 4,
                     "pin_memory": true
                 }
@@ -131,7 +131,7 @@
     },
 
     "train": { // arguments for basic training
-        "n_epoch": 5000, // max epochs, not limited now
+        "n_epoch": 2000, // max epochs, not limited now
         "n_iter": 1e8, // max interations
         "val_epoch": 200, // valdation every specified number of epochs
         "save_checkpoint_epoch": 200,
