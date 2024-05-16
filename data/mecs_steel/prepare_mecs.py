@@ -3,10 +3,12 @@ Image.MAX_IMAGE_PIXELS = 933120000
 import numpy as np
 import os
 
-out_train_dir_LOM = './data/mecs_steel/train_LOM640'
-out_train_dir_SEM = './data/mecs_steel/train_SEM640'
-out_test_dir_LOM = './data/mecs_steel/test_LOM640'
-out_test_dir_SEM = './data/mecs_steel/test_SEM640'
+image_size = 512
+
+out_train_dir_LOM = f'./data/mecs_steel/train_LOM{image_size}'
+out_train_dir_SEM = f'./data/mecs_steel/train_SEM{image_size}'
+out_test_dir_LOM = f'./data/mecs_steel/test_LOM{image_size}'
+out_test_dir_SEM = f'./data/mecs_steel/test_SEM{image_size}'
 for out_dir in [out_train_dir_LOM, out_train_dir_SEM, out_test_dir_LOM, out_test_dir_SEM]:
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
@@ -14,7 +16,7 @@ for out_dir in [out_train_dir_LOM, out_train_dir_SEM, out_test_dir_LOM, out_test
 raw_imgs_LOM = ['1318 _neu_Reg_ 0.25.tif', '60510 _neu_Reg_ 0.75.tif', 'Z518B _neu_Reg_ 0.25.tif']
 raw_imgs_SEM = ['1318 _neu_Reg_ 0.25.tif', '60510 _neu_Reg_ 0.75.tif', 'Z518B _neu_Reg_ 0.25.tif']
 
-image_size = 640
+
 n_train = 100
 n_test = 20
 for raw_img_LOM, raw_img_SEM in zip(raw_imgs_LOM, raw_imgs_SEM):
