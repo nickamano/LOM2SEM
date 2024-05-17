@@ -13,3 +13,5 @@ matplotlib
 pytz
 Werkzeug 
 yacs=0.1.8
+psutil
+ninja
