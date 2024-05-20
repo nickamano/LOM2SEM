@@ -112,10 +112,10 @@ class AdaINImagePairDataset(ImagePairDataset):
             img_style = T.ToTensor()(img_style)
         both = torch.cat((img_A.unsqueeze(0), img_B.unsqueeze(0), img_style.unsqueeze(0)), dim=0)
         both = self.transform(both)
-        img_A, img_B = both[0], both[1], both[2]
+        img_A, img_B, img_style = both[0], both[1], both[2]
         # label = self.labels[img_name]
         label = 0
-        return img_A, img_B[0][None,:,:], img_style[0][None,:,:], label
+        return img_A, img_B, img_style, label
 
     def __len__(self):
         return len(self.img_names)

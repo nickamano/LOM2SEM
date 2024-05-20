@@ -74,8 +74,8 @@ def train(cfg, dataloader, test_set, model, loss_fn, writer, device):
             score_meter.update([loss.item()], n=cfg.train.batch_size)
             if curr_step % cfg.log.display_freq == 0:
                 image_tensor = torch.cat([real_A[:cfg.log.n_row_imgs],
-                                          torch.cat([real_B]*3, dim=1)[:cfg.log.n_row_imgs],
-                                          torch.cat([fake_B]*3, dim=1)[:cfg.log.n_row_imgs]])
+                                          real_B[:cfg.log.n_row_imgs],
+                                          fake_B[:cfg.log.n_row_imgs]])
                 image_tensor = (image_tensor + 1) / 2
                 title = f"step {curr_step}"
                 save_path = f"{cfg.log.gen_dir}/step{curr_step}.png"
@@ -100,19 +100,21 @@ def train(cfg, dataloader, test_set, model, loss_fn, writer, device):
 def eval(cfg, dset, generator, curr_step, writer, n_imgs=8):
     generator.eval()
     indices = torch.randint(len(dset), (n_imgs,))
-    real_A, real_B = [], []
+    real_A, real_B, style = [], [], []
     for idx in indices:
         real_A.append(dset[idx][0])
         real_B.append(dset[idx][1])
+        style.append(dset[idx][2])
     real_A = torch.stack(real_A)
     real_B = torch.stack(real_B)
-    real_A, real_B = real_A.to(cfg.device), real_B.to(cfg.device)
-    fake_B = generator(real_A, real_B)
+    style = torch.stack(style)
+    real_A, real_B, style = real_A.to(cfg.device), real_B.to(cfg.device), style.to(cfg.device)
+    fake_B = generator(real_A, style)
 
     image_tensor = torch.cat([real_A,
-                              torch.cat([real_B] * 3, dim=1),
-                              torch.cat([fake_B] * 3, dim=1)])
-    image_tensor = (image_tensor + 1) / 2
+                              real_B,
+                              fake_B])
+    image_tensor = (image_tensor + 1) / 3
     title = f"test step {curr_step}"
     save_path = f"{cfg.log.gen_dir}/test_step{curr_step}.png"
     image_grid = show_tensor_images(image_tensor, title, nrow=n_imgs,
