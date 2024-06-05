@@ -10,7 +10,7 @@ data:
 train:
   input_size: [512, 512]
   batch_size: 32
-  epochs: 10000
+  epochs: 3000
   lr: 2.e-4
   max_steps: 9000
   lr_decay_start: 3000
@@ -22,6 +22,7 @@ train:
     - [MyRotateTransform, {}]
 
 log:
-  display_freq: 100
+  display_freq: 500
   n_row_imgs: 4 # number of images per row
-  log_freq: 50
+  log_freq: 100
+  directory: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/
