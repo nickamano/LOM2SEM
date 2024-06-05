@@ -1,0 +1,28 @@
+data:
+  directory: /nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel/
+  LOM_folder: train_LOM512
+  SEM_folder: train_SEM512
+  test_LOM_folder: test_LOM512
+  test_SEM_folder: test_SEM512
+  split: null
+  desc_checkpoint: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/AdaIN/AdaIn_gpu-02_20240521_065307/checkpoint/model.pt
+
+train:
+  input_size: [512, 512]
+  batch_size: 32
+  epochs: 1000
+  lr: 1.e-4
+  max_steps: 10000
+  lr_decay_start: 3000
+  lr_decay_factor: 0.01
+  wt_s: 10
+  augmentations:
+    - [RandomHorizontalFlip, {p: 0.5}]
+    - [RandomVerticalFlip, {p: 0.5}]
+    - [MyRotateTransform, {}]
+
+log:
+  display_freq: 500
+  n_row_imgs: 4 # number of images per row
+  log_freq: 100
+  directory: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/
