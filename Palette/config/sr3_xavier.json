@@ -101,7 +101,6 @@
                             16
                             // 8
                         ],
-                        "num_head_channels": 32,
                         "res_blocks": 2,
                         "dropout": 0.2,
                         "image_size": 256
