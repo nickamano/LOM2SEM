@@ -1,5 +1,5 @@
 {
-    "name": "sr3_xaavier_in_all", // experiments name
+    "name": "sr3_xavier_in_all", // experiments name
     "gpu_ids": [0, 1], // gpu ids list, default is single 0
     "seed" : -1, // random seed, seed <0 represents randomization not used 
     "finetune_norm": false, // find the parameters to optimize
