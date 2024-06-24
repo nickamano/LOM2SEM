@@ -2,18 +2,19 @@ data:
   directory: /nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel
   LOM_folder: train_LOM512
   SEM_folder: train_SEM512
-  test_LOM_folder: test_LOM512
-  test_SEM_folder: test_SEM512
+  test_LOM_folder: test_LOM512_forFID
+  test_SEM_folder: test_SEM512_forFID
   split: None
+  gen_checkpoint: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Pix2Pix/pix2pix/p2phd_aug_gpu_long_20240611_090448/checkpoint/model.pt
 
 train:
   input_size: [256, 256]
   batch_size: 16
-  epochs: 100000
+  epochs: 2000
   gen_lr: 2.e-4
   disc_lr: 2.e-4
   max_steps: 10000
-  lr_decay_start: 3000
+  lr_decay_start: 300
   lr_decay_factor: 0.01
   dropout: 0.001
   augmentations:
@@ -22,7 +23,7 @@ train:
     - [MyRotateTransform, {}]
 
 log:
-  directory: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Pix2Pix/
+  directory: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/FID/
   display_freq: 500
   n_row_imgs: 4 # number of images per row
   log_freq: 50

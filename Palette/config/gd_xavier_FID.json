@@ -1,17 +1,17 @@
 {
-    "name": "sr3_kaiming_in_all", // experiments name
+    "name": "gd_xavier_in_all", // experiments name
     "gpu_ids": [0], // gpu ids list, default is single 0
     "seed" : -1, // random seed, seed <0 represents randomization not used 
     "finetune_norm": false, // find the parameters to optimize
 
     "path": { //set every part file path
-        "base_dir": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Palette", // base path for all log except resume_state
+        "base_dir": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/results/FID/Palette", // base path for all log except resume_state
         "code": "code", // code backup
         "tb_logger": "tb_logger", // path of tensorboard logger
         "results": "results",
         "checkpoint": "checkpoint",
         // "resume_state": "experiments/inpainting_places2_220413_143231/checkpoint/25" 
-        "resume_state": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Palette/train_sr3_kaiming_240612_015846/checkpoint/2400"
+        "resume_state": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Palette/train_gd_xavier_in_all_240611_175015/checkpoint/2400"
     },
 
     "datasets": { // train or test
@@ -47,9 +47,9 @@
             "which_dataset": {
                 "name": ["Palette.data.dataset", "LOM2SEMDataset"], // import Dataset() class / function(not recommend) from default file
                 "args":{
-                    "LOM_data_root": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel/test_LOM512",
-                    "SEM_data_root": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel/test_SEM512",
-                    "data_flist": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel/test_LOM512"
+                    "LOM_data_root": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel/test_LOM512_forFID",
+                    "SEM_data_root": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel/test_SEM512_forFID",
+                    "data_flist": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/mecs_steel/test_LOM512_forFID"
                 }
             },
             "dataloader":{
@@ -82,8 +82,8 @@
             {
                 "name": ["Palette.models.network", "Network"], // import Network() class / function(not recommend) from default file (default is [models/network.py])
                 "args": { // arguments to initialize network
-                    "init_type": "kaiming", // method can be [normal | xavier| xavier_uniform | kaiming | orthogonal], default is kaiming
-                    "module_name": "sr3", // sr3 | guided_diffusion
+                    "init_type": "xavier", // method can be [normal | xavier| xavier_uniform | kaiming | orthogonal], default is kaiming
+                    "module_name": "guided_diffusion", // sr3 | guided_diffusion
                     "unet": {
                         "in_channel": 6,
                         "out_channel": 3,
@@ -101,6 +101,7 @@
                             16
                             // 8
                         ],
+                        "num_head_channels": 32,
                         "res_blocks": 2,
                         "dropout": 0.2,
                         "image_size": 256

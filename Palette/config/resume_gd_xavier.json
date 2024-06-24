@@ -11,7 +11,7 @@
         "results": "results",
         "checkpoint": "checkpoint",
         // "resume_state": "experiments/inpainting_places2_220413_143231/checkpoint/25" 
-        "resume_state": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Palette/train_gd_xavier_in_all_240607_040205/checkpoint/1200_Network.pth"
+        "resume_state": "/nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Palette/train_gd_xavier_in_all_240611_002407/checkpoint/1200"
     },
 
     "datasets": { // train or test

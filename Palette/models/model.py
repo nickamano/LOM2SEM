@@ -87,13 +87,13 @@ class Palette(BaseModel):
         ret_path = []
         ret_result = []
         for idx in range(self.batch_size):
-            ret_path.append('GT_{}'.format(self.path[idx]))
-            ret_result.append(self.gt_image[idx].detach().float().cpu())
+            # ret_path.append('GT_{}'.format(self.path[idx]))
+            # ret_result.append(self.gt_image[idx].detach().float().cpu())
 
-            ret_path.append('Process_{}'.format(self.path[idx]))
-            ret_result.append(self.visuals[idx::self.batch_size].detach().float().cpu())
+            # ret_path.append('Process_{}'.format(self.path[idx]))
+            # ret_result.append(self.visuals[idx::self.batch_size].detach().float().cpu())
             
-            ret_path.append('Out_{}'.format(self.path[idx]))
+            ret_path.append('Out/{}'.format(self.path[idx]))
             ret_result.append(self.visuals[idx-self.batch_size].detach().float().cpu())
         
         if self.task in ['inpainting','uncropping']:

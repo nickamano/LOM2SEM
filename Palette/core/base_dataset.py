@@ -5,7 +5,7 @@ import os
 import numpy as np
 
 IMG_EXTENSIONS = [
-    '.jpg', '.JPG', '.jpeg', '.JPEG',
+    '.jpg', '.JPG', '.jpeg', '.JPEG', '.tif',
     '.png', '.PNG', '.ppm', '.PPM', '.bmp', '.BMP',
 ]
 

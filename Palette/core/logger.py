@@ -103,6 +103,7 @@ class VisualWriter():
         os.makedirs(result_path, exist_ok=True)
         result_path = os.path.join(result_path, str(self.epoch))
         os.makedirs(result_path, exist_ok=True)
+        os.makedirs(f'{result_path}/Out', exist_ok=True)
 
         ''' get names and corresponding images from results[OrderedDict] '''
         try:

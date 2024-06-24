@@ -1,14 +1,18 @@
 import torch
 from torch import nn, optim
 from torch.utils.data import DataLoader
+from torchvision.utils import save_image
 import pickle
 import time
 import numpy as np
+from tqdm import tqdm
+from PIL import Image
+import os
 
 from core.base_config import update_cfg
 from core.log import config_writer
 from core.dataset import P2PHDDataset, ImagePairDataset
-from core.utils import show_tensor_images, ScoreMeter
+from core.utils import show_tensor_images, ScoreMeter, postprocess
 from Pix2Pix.config import cfg
 from Pix2Pix.pix2pixHD import GlobalGenerator, MultiscaleDiscriminator, Loss
 
@@ -126,10 +130,47 @@ def eval(cfg, dset, generator, curr_step, writer, n_imgs=8):
                                     num_images=n_imgs * 3, save_path=save_path)
     writer.add_image('test/gen', image_grid, curr_step)
 
+@torch.no_grad()
+def test_eval(cfg, dset, generator, curr_step, batch_size=4):
+    generator.eval()
+    for i, (real_A, real_B, img_names) in enumerate(dset, 0): 
+        real_A, real_B = real_A.to(cfg.device), real_B.to(cfg.device)
+        fake_B = generator(real_A)
 
+        print(f"test step {i}")
+        save_path = f"{cfg.log.gen_dir}/test"
+        os.makedirs(save_path, exist_ok=True)
+
+        for j, img_name in enumerate(img_names, 0):
+            # print(os.path.join(save_path, img_name))
+            np_img = postprocess(fake_B[j].cpu())
+            print(np_img[0].shape)
+            Image.fromarray(np_img[0]).save(os.path.join(save_path, img_name))
+
+def test(cfg):
+    writer = config_writer(cfg)
+
+    test_set = ImagePairDataset(cfg.data.directory, cfg.train.input_size,
+                                cfg.data.test_LOM_folder, cfg.data.test_SEM_folder, split=None)
+    print(f'test set size: {len(test_set)}')
+
+    test_loader = DataLoader(test_set, batch_size=cfg.train.batch_size, shuffle=True, num_workers=2)
+
+    print(f"loading weights from {cfg.data.gen_checkpoint}")
+
+    print('pickle worked')
+    weights = torch.load(cfg.data.gen_checkpoint)
+
+    gen = GlobalGenerator(in_channels=3, out_channels=1).to(cfg.device)
+    gen.load_state_dict(weights['gen'])
+
+    test_eval(cfg, test_loader, gen, 0 , writer)
 
 if __name__ == '__main__':
     cfg.merge_from_file('./Pix2Pix/configs/default_p2phd.yaml')
     cfg = update_cfg(cfg)
-    run(cfg)
+    if cfg.test:
+        test(cfg)
+    else:
+        run(cfg)
 

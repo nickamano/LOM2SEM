@@ -55,6 +55,7 @@ def update_cfg(cfg):
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', default="", metavar="FILE", help="Path to config file")
     parser.add_argument('--debug', action='store_true', help="Whether to enter debug mode")
+    parser.add_argument('--test', action='store_true', help="Whether to enter test mode")
     # opts arg needs to match set_cfg
     parser.add_argument("opts", default=[], nargs=argparse.REMAINDER,
                         help="Modify config options using the command-line")
@@ -64,6 +65,7 @@ def update_cfg(cfg):
     # Clone the original cfg
     cfg = cfg.clone()
     cfg.debug = args.debug
+    cfg.test = args.test
 
     # Update from config file
     if os.path.isfile(args.config):

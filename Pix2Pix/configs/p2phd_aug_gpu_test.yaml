@@ -5,15 +5,16 @@ data:
   test_LOM_folder: test_LOM512
   test_SEM_folder: test_SEM512
   split: None
+  gen_checkpoint: /nfs/turbo/coe-eaholm/namano/LOM2SEM/results/Pix2Pix/pix2pix/p2phd_aug_gpu_long_20240614_075712/checkpoint/model.pt
 
 train:
   input_size: [256, 256]
   batch_size: 16
-  epochs: 100000
+  epochs: 2000
   gen_lr: 2.e-4
   disc_lr: 2.e-4
   max_steps: 10000
-  lr_decay_start: 3000
+  lr_decay_start: 300
   lr_decay_factor: 0.01
   dropout: 0.001
   augmentations:

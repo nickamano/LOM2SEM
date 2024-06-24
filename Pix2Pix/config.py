@@ -17,3 +17,5 @@ cfg.train.gen_lr = 2e-4
 cfg.train.disc_lr = 1e-4
 cfg.train.lr_decay_start = 300
 cfg.train.lr_decay_factor = 0.01
+
+cfg.data.gen_checkpoint = None
